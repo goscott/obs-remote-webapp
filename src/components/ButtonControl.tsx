@@ -17,11 +17,13 @@ function ButtonControl(props: ButtonControlProps) {
   const [loading, setLoading] = useState(true);
   const [checked, setChecked] = useState<boolean>();
 
+  const responseParser = props.responseParser;
+
   useEffect(() => {
     const loadStatus = async () => {
       const response = await callObs(props.obsCalls.checkStatus);
       console.log(response);
-      setChecked(props.responseParser(response));
+      setChecked(responseParser(response));
     };
     if (loading) {
       loadStatus()
@@ -30,7 +32,7 @@ function ButtonControl(props: ButtonControlProps) {
           setLoading(false);
         });
     }
-  }, [loading]);
+  }, [loading, responseParser, props.obsCalls.checkStatus]);
 
   const start = async () => {
     try {

@@ -1,6 +1,5 @@
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { Card } from "react-bootstrap";
-import VirtualCameraControl from "./VirtualCameraControl";
 
 export interface SectionProps {
   title: string;

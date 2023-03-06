@@ -1,32 +1,20 @@
 import { OBSRequestTypes } from "obs-websocket-js";
 
-// let websocket: OBSWebSocket | undefined;
+export interface ApiConfig {
+  host: string;
+  port: string;
+}
 
-// const checkConnection = async (): Promise<boolean> => {
-//   if (!websocket) {
-//     return false;
-//   }
-//   try {
-//     await websocket.connect(undefined, "password");
-//     return true;
-//   } catch (error) {
-//     console.error(error);
-//     return false;
-//   }
-// };
+let apiConfig: ApiConfig = { host: "", port: "5001" };
 
-// const getObsWebsocket = async (): Promise<OBSWebSocket> => {
-//   if (!websocket || (await checkConnection())) {
-//     console.log("Connecting to OBS");
-//     const obs = new OBSWebSocket();
-//     await obs.connect(undefined, "password");
-//     websocket = obs;
-//   }
-//   return websocket;
-// };
+export const setApiConfig = (newApiCongig: ApiConfig) => {
+  apiConfig = newApiCongig;
+};
+
+export const getApiConfig = () => apiConfig;
 
 export const callObs = async (path: keyof OBSRequestTypes, body?: any) => {
-  const url = `http://${process.env.REACT_APP_IP_ADDRESS}:5001/${path}`;
+  const url = `http://${apiConfig.host}:${apiConfig.port}/${path}`;
   const method = path.startsWith("Get") ? "GET" : "POST";
   console.log(`Sending ${method} call to ${url}`);
   const response = await fetch(url, {
