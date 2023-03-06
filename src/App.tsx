@@ -4,16 +4,37 @@ import ButtonsSection from "./components/ButtonsSection";
 import IpAddressSection from "./components/IpAddressSection";
 import { useState } from "react";
 import ConnectUI from "./components/ConnectUI";
+import { Button } from "@mui/material";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [connected, setConnected] = useState(false);
-  return !connected ? (
-    <ConnectUI connectionSuccess={() => setConnected(true)} />
-  ) : (
+  // eslint-disable-next-line
+  const [_cookies, setCookie] = useCookies(["host", "port"]);
+  return (
     <div>
-      <ButtonsSection />
-      <ScenesSection />
-      <IpAddressSection />
+      {!connected ? (
+        <ConnectUI connectionSuccess={() => setConnected(true)} />
+      ) : (
+        <div>
+          <ButtonsSection />
+          <ScenesSection />
+          <IpAddressSection />
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ m: 3 }}
+            color="error"
+            onClick={async () => {
+              setCookie("host", "");
+              setCookie("port", "");
+              setConnected(false);
+            }}
+          >
+            Reconnect
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -17,11 +17,15 @@ function ConnectUI(props: ConnectUIProps) {
 
   useEffect(() => {
     const checkSavedConfig = async () => {
-      console.log("running");
       try {
-        if (cookies.host && cookies.port) {
+        if (
+          cookies.host &&
+          cookies.host.length &&
+          cookies.port &&
+          cookies.port.length
+        ) {
           await setApiConfig({ host: cookies.host, port: cookies.port });
-          await callObs("GetSceneList");
+          console.log(await callObs("GetSceneList"));
           setConnectionSuccess();
         }
       } catch (error) {
