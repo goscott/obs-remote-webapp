@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import ScenesSection from "./components/ScenesSection";
 import ButtonsSection from "./components/ButtonsSection";
-import IpAddressSection from "./components/IpAddressSection";
 import { useState } from "react";
 import ConnectUI from "./components/ConnectUI";
 import { Button } from "@mui/material";
@@ -19,7 +18,6 @@ function App() {
         <div>
           <ButtonsSection />
           <ScenesSection />
-          <IpAddressSection />
           <Button
             type="submit"
             variant="contained"
