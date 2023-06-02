@@ -1,5 +1,8 @@
+import { mute, unMute } from "../discord";
 import { callObs } from "../obs";
 import Button from "react-bootstrap/Button";
+
+const MUTE_SCENES = ["standby"];
 
 export interface SceneControlProps {
   sceneName: string;
@@ -15,7 +18,14 @@ function SceneControl(props: SceneControlProps) {
 
   return (
     <Button
-      onClick={setScene}
+      onClick={async () => {
+        await setScene();
+        if (MUTE_SCENES.includes(props.sceneName.toLowerCase())) {
+          await mute();
+        } else {
+          await unMute();
+        }
+      }}
       variant={props.current ? "primary" : "secondary"}
     >
       {props.sceneName}

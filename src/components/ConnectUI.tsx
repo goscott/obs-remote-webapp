@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { callObs, setApiConfig } from "../obs";
 import { useCookies } from "react-cookie";
 import { Card, TextField, Typography, Button } from "@mui/material";
+import { setDiscordApiConfig } from "../discord";
 
 export interface ConnectUIProps {
   connectionSuccess: () => void;
@@ -25,6 +26,7 @@ function ConnectUI(props: ConnectUIProps) {
           cookies.port.length
         ) {
           await setApiConfig({ host: cookies.host, port: cookies.port });
+          await setDiscordApiConfig({ host: cookies.host, port: "5002" });
           console.log(await callObs("GetSceneList"));
           setConnectionSuccess();
         }
