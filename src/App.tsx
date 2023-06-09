@@ -5,6 +5,7 @@ import { useState } from "react";
 import ConnectUI from "./components/ConnectUI";
 import { Button } from "@mui/material";
 import { useCookies } from "react-cookie";
+import DiscordMembersSection from "./components/DiscordMembersSection";
 
 function App() {
   const [connected, setConnected] = useState(false);
@@ -18,6 +19,7 @@ function App() {
         <div>
           <ButtonsSection />
           <ScenesSection />
+          <DiscordMembersSection />
           <Button
             type="submit"
             variant="contained"

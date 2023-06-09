@@ -26,7 +26,7 @@ function ConnectUI(props: ConnectUIProps) {
           cookies.port.length
         ) {
           await setApiConfig({ host: cookies.host, port: cookies.port });
-          await setDiscordApiConfig({ host: cookies.host, port: "5002" });
+          await setDiscordApiConfig({ host: "192.168.86.99", port: "5004" });
           console.log(await callObs("GetSceneList"));
           setConnectionSuccess();
         }

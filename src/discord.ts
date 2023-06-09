@@ -1,6 +1,6 @@
 import { ApiConfig } from "./obs";
 
-let apiConfig: ApiConfig = { host: "", port: "5002" };
+let apiConfig: ApiConfig = { host: "", port: "" };
 
 export const setDiscordApiConfig = (newApiCongig: ApiConfig) => {
   apiConfig = newApiCongig;
@@ -16,6 +16,10 @@ export const mute = async () => {
 
 export const unMute = async () => {
   await callDiscordApi("mute", "DELETE");
+};
+
+export const getMembers = async (): Promise<{ members: string[] }> => {
+  return callDiscordApi("members", "GET");
 };
 
 const callDiscordApi = async (
