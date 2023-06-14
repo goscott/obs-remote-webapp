@@ -22,6 +22,10 @@ export const getMembers = async (): Promise<{ members: string[] }> => {
   return callDiscordApi("members", "GET");
 };
 
+export const hangUp = async (): Promise<{ disconnect: boolean }> => {
+  return callDiscordApi("disconnect", "POST");
+};
+
 const callDiscordApi = async (
   path: string,
   method: "GET" | "POST" | "DELETE"
