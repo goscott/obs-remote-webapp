@@ -31,6 +31,7 @@ const callDiscordApi = async (
   method: "GET" | "POST" | "DELETE"
 ) => {
   const url = `http://${apiConfig.host}:${apiConfig.port}/${path}`;
+  console.log(`Sending ${method} call to ${url}`);
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
