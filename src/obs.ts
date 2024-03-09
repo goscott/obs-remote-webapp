@@ -25,7 +25,10 @@ const makeCall = async (url: string, method: "GET" | "POST", body?: any) => {
   return await response.json();
 };
 
-export const getHardwareStats = async (): Promise<{ usage: number }> => {
+export const getHardwareStats = async (): Promise<{
+  cpu: number[];
+  memory: number[];
+}> => {
   return makeCall(`http://${apiConfig.host}:${apiConfig.port}/machine`, "GET");
 };
 
